@@ -1,117 +1,62 @@
-//create the object
+const button = document.getElementsByClassName('.convert');
+const input = document.getElementById('myInput');
+const morseDisplay = document.getElementById('morse_display');
 
-const morseCode = {
-    a: " ⚫➖/ " ,
-    b: " ➖⚫⚫⚫/ ",
-    c: " ➖⚫➖⚫/ ",
-    d: " ➖⚫⚫/ ",
-    e: " ⚫/ ",
-    f: " ⚫⚫➖⚫/ ",
-    g: " ➖➖⚫/ ",
-    h: " ⚫⚫⚫⚫/ ",
-    i: " ⚫⚫/ ",
-    j: " ⚫➖➖➖/ ", 
-    k: " ➖⚫➖/ ",
-    l: " ⚫➖⚫⚫/ ",
-    m: " ➖➖/ ",
-    n: " ➖⚫/ ",
-    o: " ➖➖➖/ ",
-    p: " ⚫➖➖⚫/ ",
-    q: " ➖➖⚫➖/ ",
-    r: " ⚫➖⚫/ ",
-    s: " ⚫⚫⚫/ ",
-    t: " ➖/ ",
-    u: " ⚫⚫➖/ ",
-    v: " ⚫⚫⚫➖/ ",
-    w: " ⚫➖➖/ ",
-    x: " ➖⚫⚫➖/ ",
-    y: " ➖⚫➖➖/ ",
-    z: " ➖➖⚫⚫/ ",
-    " ": "   //    "
-  }
+const Morse = {
+  'a':'.-',
+  'b':'-...',
+  'c':'-.-',
+  'd':'-..',
+  'e':'.',
+  'f':'..-.',
+  'g':'--.',
+  'h':'....',
+  'i':'..',
+  'j':'.---',
+  'k':'-.-',
+  'l':'.-..',
+  'm':'--',
+  'n':'-.',
+  'o':'---',
+  'p':'.--.',
+  'q':'--.-',
+  'r':'.-.',
+  's':'...',
+  't':'-',
+  'u':'..-',
+  'v':'...-',
+  'w':'.--',
+  'x':'-..-',
+  'y':'-.--',
+  'z':'--..',
+  '1':'.----',
+  '2':'..---',
+  '3':'...--',
+  '4':'....-',
+  '5':'.....',
+  '6':'-....',
+  '7':'--...',
+  '8':'---..',
+  '9':'----.',
+  '0':'-----',
+  '/':'/',
+  '.': '.-.-.-',
+  ',':'--..--',
+  '?': '..--..'
   
-  //get elements
-  const translateToEnglish = document.querySelector(".morse__translate__toMorse");
-  const tranlsateMorseBtn = document.querySelector(".english__translate__toEnglish")
-  const clearMorseBtn = document.querySelector(".morse__clearMorse");
-  const clearEnglishBtn = document.querySelector(".morse__clearEnglish");
-  const textInput = document.getElementById("textInput");
-  const textOutput = document.querySelector(".morse__output__translation");
-  const title = document.querySelector(".morse__output__title");
-  const morseBtns = document.querySelector(".english__translate__inputs");
-  const morseDisplay = document.querySelector(".english__translate__keyedInputs");
-  const englishOutput = document.querySelector(".english__translate__output");
-  
-  // Morse code Arr
-  let letterKeys = Object.keys(morseCode);
-  
-  //capture typed input - english
-  const englishWords = [];
+}
+const letters = Object.keys(Morse);
+const morse = Object.values(Morse);
 
-  //capture button input - morse code
-  const morseWords = [];
-  
-  //function to clear text input
-  const clear = () => {
-    textInput.value= null;
-    englishWords.length = 0;
-  }
-  
-  //run translation on click
-  const handleTranslation = translateToEnglish.addEventListener("click", (e) => {
-    let input = textInput.value.toLowerCase();
-      
-  //display translation
-  const translatePhrase = () => {
-    let translationArr = []
-    englishWords.forEach((word) => {
-    translationArr.push(morseCode[word]);
-    title.innerHTML = "Your Morse Code is:"
-    textOutput.innerHTML = translationArr.join(" ");
-        }
-      )}
-    translatePhrase();
-    clear();
-  })
-  
-  //clear area/clear translation
-  textInput.onfocus = () => {
-    document.querySelector(".morse__output__title").innerHTML = "";
-    textOutput.innerHTML = "";
-  }
-  
-  //clear input using clear button
-  const handleClearMorse = clearMorseBtn.addEventListener("click", (e) => {
-        clear();
-  })
-  
-  // MORSE TO ENGLISH
-  const handleMorseInput = morseBtns.addEventListener("click", (e) => {
-      e.preventDefault
-  
-      let morseLetter = e.target.value;
-      console.log(morseLetter)
-      //morseWords.push(morseLetter);
-      if (!morseLetter) {
-        morseDisplay.innerHTML += "";
-      } else {
-      morseDisplay.innerHTML += morseLetter;
-      }
-  
-      const getMorse = () => {
-       const getKey = letterKeys.find(key => morseCode[key] === morseLetter)  
-         morseWords.push(getKey);
-        }   
-        getMorse();
-  })
-  
-  const handleTranslateMorse = tranlsateMorseBtn.addEventListener("click", (e) => {
-          englishOutput.innerHTML = morseWords.join(" ");
-          morseWords.length = 0;
-  })
-  
-  const handleClearEnglish = clearEnglishBtn.addEventListener("click", (e) => {
-      morseDisplay.innerHTML = "";
-      englishOutput.innerHTML = "";
-      morseWords.length = 0;
-  })
+const toMorse = () => {
+  const greeting = input.value
+  const greetingSplit = greeting.toLowerCase().split("");
+  const greetingSlash = greetingSplit.map(a => a === " " ? "/" :a);
+  const greetingMorse = greetingSlash.map((letter) =>  Morse[letter]).join(" ");
+  morseDisplay.innerHTML= greetingMorse;
+}
+
+  const spaceAdder = morseString.map((m) => m.replace("/", " "));
+  const morseFinal = spaceAdder.join("");
+
+  morseDisplay.innerHTML=morseFinal;
