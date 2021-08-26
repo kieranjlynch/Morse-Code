@@ -51,7 +51,14 @@
   margin-left: 10%;
   padding: 10px;
   text-align: center;
+  margin: auto;
 }
-.container .morse_display p {
+.container .morse_display .morse__output {
+  height: 10vh;
+  width: 75%;
+  margin-left: 25%;
+}
+.container .morse_display .morse__output h1 {
   text-align: center;
+  margin: auto;
 }

@@ -57,9 +57,17 @@
       margin-left: 10%;
       padding: 10px;
       text-align: center;
+      margin: auto;
 
-      p {
-        text-align: center;
+      .morse__output {
+        height: 10vh;
+        width: 75%;
+        margin-left: 25%;
+
+          h1 {
+            text-align: center;
+            margin: auto;
+          }
       }
     }
   }
